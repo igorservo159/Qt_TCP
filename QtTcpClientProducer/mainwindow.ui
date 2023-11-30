@@ -22,121 +22,77 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <layout class="QVBoxLayout" name="verticalLayout_3">
+     <layout class="QHBoxLayout" name="horizontalLayout_7">
       <item>
-       <widget class="QLineEdit" name="lineEdit">
-        <property name="minimumSize">
-         <size>
-          <width>199</width>
-          <height>25</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>127.0.0.1</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout">
+       <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="QPushButton" name="connect">
+         <widget class="QLineEdit" name="lineEdit">
           <property name="minimumSize">
            <size>
-            <width>96</width>
+            <width>199</width>
             <height>25</height>
            </size>
           </property>
           <property name="text">
-           <string>Connect</string>
+           <string>127.0.0.1</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="disconnect">
-          <property name="minimumSize">
-           <size>
-            <width>95</width>
-            <height>25</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Disconnect</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <item>
-         <widget class="QSlider" name="min">
-          <property name="minimumSize">
-           <size>
-            <width>125</width>
-            <height>15</height>
-           </size>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout">
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
           <item>
-           <widget class="QLabel" name="label">
+           <widget class="QPushButton" name="connect">
             <property name="minimumSize">
              <size>
-              <width>64</width>
-              <height>17</height>
+              <width>96</width>
+              <height>25</height>
              </size>
             </property>
             <property name="text">
-             <string>Min</string>
+             <string>Connect</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLCDNumber" name="display_max">
+           <widget class="QPushButton" name="disconnect">
             <property name="minimumSize">
              <size>
-              <width>64</width>
-              <height>23</height>
+              <width>95</width>
+              <height>25</height>
              </size>
+            </property>
+            <property name="text">
+             <string>Disconnect</string>
             </property>
            </widget>
           </item>
          </layout>
         </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <widget class="QSlider" name="max">
+         <widget class="QLabel" name="label">
           <property name="minimumSize">
            <size>
-            <width>125</width>
-            <height>15</height>
+            <width>64</width>
+            <height>17</height>
            </size>
           </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
+          <property name="text">
+           <string>Min</string>
           </property>
          </widget>
         </item>
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout_2">
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
           <item>
-           <widget class="QLabel" name="label_2">
+           <widget class="QSlider" name="min">
             <property name="minimumSize">
              <size>
-              <width>64</width>
-              <height>17</height>
+              <width>125</width>
+              <height>15</height>
              </size>
             </property>
-            <property name="text">
-             <string>Max</string>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
             </property>
            </widget>
           </item>
@@ -152,90 +108,150 @@
           </item>
          </layout>
         </item>
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="minimumSize">
+           <size>
+            <width>64</width>
+            <height>17</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Max</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QSlider" name="max">
+            <property name="minimumSize">
+             <size>
+              <width>125</width>
+              <height>15</height>
+             </size>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLCDNumber" name="display_max">
+            <property name="minimumSize">
+             <size>
+              <width>64</width>
+              <height>23</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QLabel" name="label_3">
+            <property name="minimumSize">
+             <size>
+              <width>47</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Timing</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSlider" name="time">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_6">
+            <property name="minimumSize">
+             <size>
+              <width>31</width>
+              <height>20</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>1</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QPushButton" name="start">
+            <property name="minimumSize">
+             <size>
+              <width>96</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Start</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="stop">
+            <property name="minimumSize">
+             <size>
+              <width>95</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Stop</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <item>
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_5">
+            <property name="minimumSize">
+             <size>
+              <width>91</width>
+              <height>17</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_4">
-        <item>
-         <widget class="QLabel" name="label_3">
-          <property name="minimumSize">
-           <size>
-            <width>47</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Timing</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSlider" name="time">
-          <property name="minimumSize">
-           <size>
-            <width>144</width>
-            <height>15</height>
-           </size>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_5">
-        <item>
-         <widget class="QPushButton" name="start">
-          <property name="minimumSize">
-           <size>
-            <width>96</width>
-            <height>25</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Start</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="stop">
-          <property name="minimumSize">
-           <size>
-            <width>95</width>
-            <height>25</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Stop</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_6">
-        <item>
-         <widget class="QLabel" name="label_4">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_5">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-       </layout>
+       <widget class="QTextBrowser" name="textBrowser">
+        <property name="minimumSize">
+         <size>
+          <width>201</width>
+          <height>258</height>
+         </size>
+        </property>
+       </widget>
       </item>
      </layout>
-    </item>
-    <item row="0" column="1">
-     <widget class="QTextBrowser" name="textBrowser"/>
     </item>
    </layout>
   </widget>

@@ -20,12 +20,27 @@ MainWindow::MainWindow(QWidget *parent) :
   connect(ui->start,
           SIGNAL(clicked(bool)),
           this,
-          SLOT(startTimer()));
+          SLOT(startTime()));
 
   connect(ui->stop,
           SIGNAL(clicked(bool)),
           this,
-          SLOT(stopTimer()));
+          SLOT(stopTime()));
+
+  connect(ui->min,
+          SIGNAL(valueChanged(int)),
+          this,
+          SLOT(min_value(int)));
+
+  connect(ui->max,
+          SIGNAL(valueChanged(int)),
+          this,
+          SLOT(max_value(int)));
+
+  connect(ui->time,
+          SIGNAL(valueChanged(int)),
+          this,
+          SLOT(time_value(int)));
 
   ui->label_4->setText("Disconnected");
   ui->label_5->setText("Disabled");
@@ -40,7 +55,8 @@ void MainWindow::tcpConnect(){
     status = 1;
   }
   else{
-    qDebug() << "Disconnected";
+    qDebug() << "deu errado";
+    qDebug() << "Connection error:" << socket->errorString();
     ui->label_4->setText("Disconnected");
   }
 }
@@ -50,11 +66,14 @@ void MainWindow::putData(){
   QString str;
   qint64 msecdate;
 
+  int min = ui->display_max->value();
+  int max = ui->display_max->value();
+
   if(socket->state()== QAbstractSocket::ConnectedState){
 
     msecdate = QDateTime::currentDateTime().toMSecsSinceEpoch();
     str = "set "+ QString::number(msecdate) + " " +
-        QString::number(rand()%35)+"\r\n";
+          QString::number(min+(rand()%(max-min)))+"\r\n";
 
       qDebug() << str;
       qDebug() << socket->write(str.toStdString().c_str())
@@ -62,6 +81,7 @@ void MainWindow::putData(){
       if(socket->waitForBytesWritten(3000)){
         qDebug() << "wrote";
       }
+      ui->textBrowser->append(str);
   }
 }
 
@@ -69,20 +89,49 @@ void MainWindow::tEvent(QTimerEvent *event){
 
 }
 
-void MainWindow::startTimer(){
-
+void MainWindow::startTime(){
+    int t = 1000*ui->time->value();
+    timer = startTimer(t);
+    if(status == 1){
+        ui->label_5->setText("Activated");
+    } else{
+        ui->label_5->setText("Disabled");
+    }
 }
 
-void MainWindow::stopTimer(){
-
+void MainWindow::stopTime(){
+    killTimer(timer);
+    ui->label_5->setText("Disabled");
 }
 
 void MainWindow::connect_click(){
-
+    tcpConnect();
+    status = 1;
 }
 
 void MainWindow::disconnect_click(){
+    socket -> disconnectFromHost();
+    qDebug() << "Disconnected";
+    ui->label_4->setText("Disconnected");
+    ui->label_5->setText("Disabled");
+    status = 0;
+}
 
+void MainWindow::min_value(int value){
+    ui->display_min->display(value);
+}
+
+void MainWindow::max_value(int value){
+    ui->display_max->display(value);
+}
+
+void MainWindow::time_value(int value){
+    QString valor = QString::number(value);
+    ui->label_6->setText(valor);
+}
+
+void MainWindow::clearText(){
+    ui->textBrowser->clear();
 }
 
 MainWindow::~MainWindow(){

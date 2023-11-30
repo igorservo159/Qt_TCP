@@ -22,23 +22,21 @@ public:
 public slots:
   void putData();
   void tEvent(QTimerEvent *event);
-  void startTimer();
-  void stopTimer();
+  void startTime();
+  void stopTime();
 
 private slots:
   void connect_click();
 
   void disconnect_click();
 
-  //void on_start_clicked();
+  void min_value(int value);
 
-  //void on_min_valueChanged(int value);
+  void max_value(int value);
 
-  //void on_max_valueChanged(int value);
+  void time_value(int value);
 
-  //void on_time_valueChanged(int value);
-
-  //void on_LIMPAR_clicked();
+  void clearText();
 
 private:
   Ui::MainWindow *ui;
