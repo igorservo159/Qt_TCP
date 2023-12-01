@@ -36,18 +36,21 @@ public:
     QVBoxLayout *verticalLayout;
     QLabel *label;
     QLineEdit *lineEdit;
-    QHBoxLayout *horizontalLayout_3;
+    QHBoxLayout *horizontalLayout_4;
     QPushButton *connect;
     QPushButton *disconnect;
     QListWidget *listWidget;
     QPushButton *update;
     QLabel *label_2;
-    QHBoxLayout *horizontalLayout_2;
-    QSlider *horizontalSlider;
+    QHBoxLayout *horizontalLayout_3;
+    QSlider *time;
     QLabel *label_3;
-    QHBoxLayout *horizontalLayout;
+    QHBoxLayout *horizontalLayout_2;
     QPushButton *start;
     QPushButton *stop;
+    QHBoxLayout *horizontalLayout;
+    QLabel *label_4;
+    QLabel *label_5;
     Plotter *widget;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
@@ -57,7 +60,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(526, 390);
+        MainWindow->resize(516, 410);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName("centralWidget");
         gridLayout = new QGridLayout(centralWidget);
@@ -81,29 +84,29 @@ public:
 
         verticalLayout->addWidget(lineEdit);
 
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setSpacing(6);
-        horizontalLayout_3->setObjectName("horizontalLayout_3");
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setSpacing(6);
+        horizontalLayout_4->setObjectName("horizontalLayout_4");
         connect = new QPushButton(centralWidget);
         connect->setObjectName("connect");
         connect->setMinimumSize(QSize(111, 25));
         connect->setMaximumSize(QSize(111, 16777215));
 
-        horizontalLayout_3->addWidget(connect);
+        horizontalLayout_4->addWidget(connect);
 
         disconnect = new QPushButton(centralWidget);
         disconnect->setObjectName("disconnect");
         disconnect->setMinimumSize(QSize(110, 25));
         disconnect->setMaximumSize(QSize(110, 16777215));
 
-        horizontalLayout_3->addWidget(disconnect);
+        horizontalLayout_4->addWidget(disconnect);
 
 
-        verticalLayout->addLayout(horizontalLayout_3);
+        verticalLayout->addLayout(horizontalLayout_4);
 
         listWidget = new QListWidget(centralWidget);
         listWidget->setObjectName("listWidget");
-        listWidget->setMinimumSize(QSize(229, 110));
+        listWidget->setMinimumSize(QSize(229, 105));
         listWidget->setMaximumSize(QSize(229, 16777215));
 
         verticalLayout->addWidget(listWidget);
@@ -122,23 +125,44 @@ public:
 
         verticalLayout->addWidget(label_2);
 
-        horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setSpacing(6);
-        horizontalLayout_2->setObjectName("horizontalLayout_2");
-        horizontalSlider = new QSlider(centralWidget);
-        horizontalSlider->setObjectName("horizontalSlider");
-        horizontalSlider->setMinimumSize(QSize(212, 15));
-        horizontalSlider->setMaximumSize(QSize(212, 16777215));
-        horizontalSlider->setOrientation(Qt::Horizontal);
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setSpacing(6);
+        horizontalLayout_3->setObjectName("horizontalLayout_3");
+        time = new QSlider(centralWidget);
+        time->setObjectName("time");
+        time->setMinimumSize(QSize(212, 15));
+        time->setMaximumSize(QSize(212, 16777215));
+        time->setMinimum(1);
+        time->setOrientation(Qt::Horizontal);
 
-        horizontalLayout_2->addWidget(horizontalSlider);
+        horizontalLayout_3->addWidget(time);
 
         label_3 = new QLabel(centralWidget);
         label_3->setObjectName("label_3");
         label_3->setMinimumSize(QSize(9, 17));
         label_3->setMaximumSize(QSize(9, 16777215));
 
-        horizontalLayout_2->addWidget(label_3);
+        horizontalLayout_3->addWidget(label_3);
+
+
+        verticalLayout->addLayout(horizontalLayout_3);
+
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setSpacing(6);
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
+        start = new QPushButton(centralWidget);
+        start->setObjectName("start");
+        start->setMinimumSize(QSize(111, 25));
+        start->setMaximumSize(QSize(111, 16777215));
+
+        horizontalLayout_2->addWidget(start);
+
+        stop = new QPushButton(centralWidget);
+        stop->setObjectName("stop");
+        stop->setMinimumSize(QSize(110, 25));
+        stop->setMaximumSize(QSize(110, 16777215));
+
+        horizontalLayout_2->addWidget(stop);
 
 
         verticalLayout->addLayout(horizontalLayout_2);
@@ -146,19 +170,19 @@ public:
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);
         horizontalLayout->setObjectName("horizontalLayout");
-        start = new QPushButton(centralWidget);
-        start->setObjectName("start");
-        start->setMinimumSize(QSize(111, 25));
-        start->setMaximumSize(QSize(111, 16777215));
+        label_4 = new QLabel(centralWidget);
+        label_4->setObjectName("label_4");
+        label_4->setMinimumSize(QSize(111, 17));
+        label_4->setMaximumSize(QSize(111, 16777215));
 
-        horizontalLayout->addWidget(start);
+        horizontalLayout->addWidget(label_4);
 
-        stop = new QPushButton(centralWidget);
-        stop->setObjectName("stop");
-        stop->setMinimumSize(QSize(110, 25));
-        stop->setMaximumSize(QSize(110, 16777215));
+        label_5 = new QLabel(centralWidget);
+        label_5->setObjectName("label_5");
+        label_5->setMinimumSize(QSize(110, 17));
+        label_5->setMaximumSize(QSize(110, 16777215));
 
-        horizontalLayout->addWidget(stop);
+        horizontalLayout->addWidget(label_5);
 
 
         verticalLayout->addLayout(horizontalLayout);
@@ -168,14 +192,14 @@ public:
 
         widget = new Plotter(centralWidget);
         widget->setObjectName("widget");
-        widget->setMinimumSize(QSize(271, 311));
+        widget->setMinimumSize(QSize(261, 331));
 
         gridLayout->addWidget(widget, 0, 1, 1, 1);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName("menuBar");
-        menuBar->setGeometry(QRect(0, 0, 526, 22));
+        menuBar->setGeometry(QRect(0, 0, 516, 22));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName("mainToolBar");
@@ -201,6 +225,8 @@ public:
         label_3->setText(QCoreApplication::translate("MainWindow", "1", nullptr));
         start->setText(QCoreApplication::translate("MainWindow", "Start", nullptr));
         stop->setText(QCoreApplication::translate("MainWindow", "Stop", nullptr));
+        label_4->setText(QString());
+        label_5->setText(QString());
     } // retranslateUi
 
 };

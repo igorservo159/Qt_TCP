@@ -165,6 +165,7 @@ public:
 
         time = new QSlider(centralWidget);
         time->setObjectName("time");
+        time->setMinimum(1);
         time->setOrientation(Qt::Horizontal);
 
         horizontalLayout->addWidget(time);

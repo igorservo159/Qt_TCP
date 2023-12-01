@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDateTime>
+#include <QTimer>
 
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent), ui(new Ui::MainWindow){
@@ -20,12 +21,12 @@ MainWindow::MainWindow(QWidget *parent) :
   connect(ui->start,
           SIGNAL(clicked(bool)),
           this,
-          SLOT(startTime()));
+          SLOT(start()));
 
   connect(ui->stop,
           SIGNAL(clicked(bool)),
           this,
-          SLOT(stopTime()));
+          SLOT(stop()));
 
   connect(ui->min,
           SIGNAL(valueChanged(int)),
@@ -45,6 +46,7 @@ MainWindow::MainWindow(QWidget *parent) :
   ui->label_4->setText("Disconnected");
   ui->label_5->setText("Disabled");
   status = 0;
+  dataTimer = nullptr;
 }
 
 void MainWindow::tcpConnect(){
@@ -66,7 +68,7 @@ void MainWindow::putData(){
   QString str;
   qint64 msecdate;
 
-  int min = ui->display_max->value();
+  int min = ui->display_min->value();
   int max = ui->display_max->value();
 
   if(socket->state()== QAbstractSocket::ConnectedState){
@@ -85,28 +87,34 @@ void MainWindow::putData(){
   }
 }
 
-void MainWindow::tEvent(QTimerEvent *event){
+//void MainWindow::tEvent(QTimerEvent *event){}
 
-}
-
-void MainWindow::startTime(){
+void MainWindow::start(){
     int t = 1000*ui->time->value();
-    timer = startTimer(t);
+    if (dataTimer && dataTimer->isActive()) {
+        dataTimer->stop();
+    }
+
     if(status == 1){
         ui->label_5->setText("Activated");
+        dataTimer = new QTimer(this);
+        connect(dataTimer, SIGNAL(timeout()), this, SLOT(putData()));
+        dataTimer->start(t);
     } else{
         ui->label_5->setText("Disabled");
     }
 }
 
-void MainWindow::stopTime(){
-    killTimer(timer);
+void MainWindow::stop(){
     ui->label_5->setText("Disabled");
+    if(dataTimer->isActive()){
+        dataTimer->stop();
+        qDebug() << "Timer stopped";
+    }
 }
 
 void MainWindow::connect_click(){
     tcpConnect();
-    status = 1;
 }
 
 void MainWindow::disconnect_click(){

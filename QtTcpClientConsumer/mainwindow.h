@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QTcpSocket>
 #include <QDebug>
+#include <QListWidgetItem>
+
 
 namespace Ui {
 class MainWindow;
@@ -18,11 +20,25 @@ public:
   ~MainWindow();
   
   void tcpConnect();
+
 public slots:
   void getData();
+  void update();
+  void start();
+  void stop();
+
+private slots:
+  void connect_click();
+  void disconnect_click();
+  void selectMachine(QListWidgetItem *item);
+  void updateInterval(int value);
+
 private:
   Ui::MainWindow *ui;
   QTcpSocket *socket;
+  QTimer *dataTimer;
+  QString selectedMachine;
+  int status;
 };
 
 #endif // MAINWINDOW_H

@@ -21,9 +21,9 @@ public:
 
 public slots:
   void putData();
-  void tEvent(QTimerEvent *event);
-  void startTime();
-  void stopTime();
+  //void tEvent(QTimerEvent *event);
+  void start();
+  void stop();
 
 private slots:
   void connect_click();
@@ -41,7 +41,7 @@ private slots:
 private:
   Ui::MainWindow *ui;
   QTcpSocket *socket;
-  int timer;
+  QTimer *dataTimer;
   int status;
 };
 
