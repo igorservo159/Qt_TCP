@@ -4,6 +4,7 @@
 #include <QPainter>
 #include <QDebug>
 #include <QMouseEvent>
+#include <algorithm>
 
 Plotter::Plotter(QWidget *parent)
     : QWidget{parent}{
@@ -34,36 +35,47 @@ void Plotter::paintEvent(QPaintEvent *event){
 
     // desenha o plano (fundo do osciloscopio)
     painter.drawRect(0,0, width()-1, height()-1);
-    pen.setColor(QColor(0,0,255));
-    painter.setPen(pen);
-    painter.drawLine(0, height()/2, width(), height()/2);
 
-    // traca a senoide
     float t1, t2, y1, y2;
     // teta = veloc*0.05;
-    t1 = 0; y1 = 0;
+    t1 = timestamp[0]; y1 = values[0];
     // muda a cor do tracado para verde
     pen.setColor(QColor(rPlot,gPlot,bPlot));
     pen.setWidth(2);
     painter.setPen(pen);
-    // desenha a senoide
-    for(int i=0; i<width(); i++){
-        // calcula o tempo seguinte
-        t2 = i;
-        // calcula o seno
-        y2 = amp*sin(2*3.14*freq*t2/width()+teta);
+    // desenha o gráfico
+
+    int j = 1;
+    for(int i=0; i<=width(); i++){
+        float teste = i/static_cast<float>(width());
+        if(teste >= timestamp[j]){
+            t2 = timestamp[j]*width();
+            y2 = values[j],
+            j++;
+            painter.drawLine(t1,
+                             -y1*height()+height(),
+                             t2,
+                             -y2*height()+height());
+            t1 = t2;
+            y1 = y2;
+        }
+        /*else {
+            t2 = teste*width();
+            y2 = values[j - 1];
+        }
+
         painter.drawLine(t1,
-                         -y1*height()/2+height()/2,
+                         -y1*height()+height(),
                          t2,
-                         -y2*height()/2+height()/2);
+                         -y2*height()+height());
         t1 = t2;
-        y1 = y2;
+        y1 = y2;*/
     }
 }
 
 void Plotter::timerEvent(QTimerEvent *e){
     //   qDebug() << "click!";
-    teta = teta + 0.01*veloc;
+    teta = teta + 0.1*veloc;
     repaint();
 }
 
@@ -71,6 +83,37 @@ void Plotter::mousePressEvent(QMouseEvent *e)
 {
     qDebug() << e->x() << " " << e->y();
     emit mudaXY(e->x(), e->y());
+}
+
+void Plotter::load(std::vector<long long> time, std::vector<float> value)
+{
+    timestamp.resize(time.size());
+    values = value;
+
+    //float maxvalue = 50;
+
+    float maxvalue = *std::max_element(values.begin(), values.end());
+    float minvalue = *std::min_element(values.begin(), values.end());
+
+    long long maxtime = *std::max_element(time.begin(), time.end());
+    long long mintime = *std::min_element(time.begin(), time.end());
+
+    // preparar timestamp e value para serem plotados um versus o outro
+    for(int i = 0; i < timestamp.size(); i++){
+        timestamp[i] = (time[i] - mintime)/(1.0*(maxtime - mintime));
+        qDebug() << "tempo: " << timestamp[i] ;
+    }
+    for(int i = 0; i < values.size(); i++){
+
+        if(minvalue != maxvalue){
+            values[i] = (values[i] - minvalue)/(maxvalue - minvalue);
+            qDebug() << "valor: " << values[i];
+        }
+
+        //values[i] = values[i]/maxvalue;
+
+    }
+    repaint();
 }
 
 void Plotter::mudaAmplitude(int amp){

@@ -8,6 +8,9 @@ MainWindow::MainWindow(QWidget *parent) :
   ui(new Ui::MainWindow)
 {
   ui->setupUi(this);
+  std::vector<long long> temposIniciais = {0, 1, 2, 3, 5, 7};
+  std::vector<float> valoresIniciais = {0.0, 10.0, 15.0, 5.0, 9.0, 4.0};
+  ui->widget->load(temposIniciais, valoresIniciais);
   socket = new QTcpSocket(this);
   tcpConnect();
 
@@ -82,11 +85,14 @@ void MainWindow::getData(){
   QByteArray array;
   QStringList list;
   qint64 thetime;
+  float thevalue;
+  std::vector<long long> tempos;
+  std::vector<float> valores;
   qDebug() << "to get data...";
   if(socket->state() == QAbstractSocket::ConnectedState && !selectedMachine.isEmpty()){
     if(socket->isOpen()){
       qDebug() << "reading...";
-      QString command = "get " + selectedMachine + " 1\r\n";
+      QString command = "get " + selectedMachine + " 50\r\n";
       socket->write(command.toUtf8());
       socket->waitForBytesWritten();
       socket->waitForReadyRead();
@@ -95,13 +101,18 @@ void MainWindow::getData(){
         str = socket->readLine().replace("\n","").replace("\r","");
         list = str.split(" ");
         if(list.size() == 2){
-          bool ok;
+          bool ok1, ok2;
           str = list.at(0);
-          thetime = str.toLongLong(&ok);
+          thetime = str.toLongLong(&ok1);
           str = list.at(1);
-          qDebug() << thetime << ": " << str;
+          thevalue = str.toFloat(&ok2);
+          if(ok1 && ok2)
+            qDebug() << thetime << ": " << thevalue;
+          tempos.push_back(thetime);
+          valores.push_back(thevalue);
         }
       }
+      ui->widget->load(tempos, valores);
     }
   }
 }
@@ -169,3 +180,5 @@ MainWindow::~MainWindow()
   delete socket;
   delete ui;
 }
+//std::vector<long> Tempo;
+//std::vector<int> Valor;

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>516</width>
+    <width>586</width>
     <height>410</height>
    </rect>
   </property>
@@ -157,13 +157,13 @@
          <widget class="QSlider" name="time">
           <property name="minimumSize">
            <size>
-            <width>212</width>
-            <height>15</height>
+            <width>201</width>
+            <height>16</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>212</width>
+            <width>201</width>
             <height>16777215</height>
            </size>
           </property>
@@ -179,13 +179,13 @@
          <widget class="QLabel" name="label_3">
           <property name="minimumSize">
            <size>
-            <width>9</width>
-            <height>17</height>
+            <width>25</width>
+            <height>20</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>9</width>
+            <width>25</width>
             <height>16777215</height>
            </size>
           </property>
@@ -286,7 +286,7 @@
      <widget class="Plotter" name="widget" native="true">
       <property name="minimumSize">
        <size>
-        <width>261</width>
+        <width>326</width>
         <height>331</height>
        </size>
       </property>
@@ -299,7 +299,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>516</width>
+     <width>586</width>
      <height>22</height>
     </rect>
    </property>

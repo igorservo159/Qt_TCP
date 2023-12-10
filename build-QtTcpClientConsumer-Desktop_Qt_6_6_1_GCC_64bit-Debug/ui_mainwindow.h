@@ -60,7 +60,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(516, 410);
+        MainWindow->resize(586, 410);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName("centralWidget");
         gridLayout = new QGridLayout(centralWidget);
@@ -130,8 +130,8 @@ public:
         horizontalLayout_3->setObjectName("horizontalLayout_3");
         time = new QSlider(centralWidget);
         time->setObjectName("time");
-        time->setMinimumSize(QSize(212, 15));
-        time->setMaximumSize(QSize(212, 16777215));
+        time->setMinimumSize(QSize(201, 16));
+        time->setMaximumSize(QSize(201, 16777215));
         time->setMinimum(1);
         time->setOrientation(Qt::Horizontal);
 
@@ -139,8 +139,8 @@ public:
 
         label_3 = new QLabel(centralWidget);
         label_3->setObjectName("label_3");
-        label_3->setMinimumSize(QSize(9, 17));
-        label_3->setMaximumSize(QSize(9, 16777215));
+        label_3->setMinimumSize(QSize(25, 20));
+        label_3->setMaximumSize(QSize(25, 16777215));
 
         horizontalLayout_3->addWidget(label_3);
 
@@ -192,14 +192,14 @@ public:
 
         widget = new Plotter(centralWidget);
         widget->setObjectName("widget");
-        widget->setMinimumSize(QSize(261, 331));
+        widget->setMinimumSize(QSize(326, 331));
 
         gridLayout->addWidget(widget, 0, 1, 1, 1);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName("menuBar");
-        menuBar->setGeometry(QRect(0, 0, 516, 22));
+        menuBar->setGeometry(QRect(0, 0, 586, 22));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName("mainToolBar");
